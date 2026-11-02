@@ -1,0 +1,65 @@
+ <label>Email:</label>
+  <input type="email" formControlName="email">
+
+  @if (signupForm.get('email')?.hasError('required')) {
+    <p>Email is required</p>
+  }
+
+  @if (signupForm.get('email')?.hasError('email')) {
+    <p>Invalid email</p>
+  }
+
+  @if (signupForm.get('email')?.hasError('emailTaken')) {
+    <p>Email already exists</p>
+  }
+
+  <br>
+
+  <label>Password:</label>
+  <input type="password" formControlName="password">
+
+  <br>
+
+  <label>Confirm Password:</label>
+  <input type="password" formControlName="confirmPassword">
+
+  @if (signupForm.hasError('mismatch')) {
+    <p>Passwords do not match</p>
+  }
+
+  <br>
+
+   signupForm: FormGroup;
+
+  constructor(private userService: UserService) {
+
+    this.signupForm = new FormGroup({
+
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [this.emailValidator()],
+        updateOn: 'blur'
+      }),
+
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(),
+        
+      ]),
+
+      confirmPassword: new FormControl('', Validators.required)
+
+    }, { validators: this.passwordMatch });
+
+  }
+
+ 
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+
+    const value = control.value || '';
+
+    const valid = /[A-Za-z]/.test(value) &&
+                  /[0-9]/.test(value);
+
+    return valid ? null : { invalidPassword: true };
+  }
