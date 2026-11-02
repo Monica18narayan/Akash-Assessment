@@ -1,0 +1,27 @@
+A1 =
+
+1 counter.incrementLater(); =Compile time error  because we are passing the function name but we are not calling it anywhere 
+
+const counter = { 
+  count: 0, 
+  incrementLater() { 
+    setTimeout( function(){ this. Count++; console.log(this.count); }function(), 0); 
+  }
+}
+
+counter.incrementLater(); 
+
+2 =counter.incrementLaterArrow();=1  //o/p
+
+
+A2
+
+1 = [1,2,3]
+
+2= 10
+
+3 =[ 6,65,22]
+
+4 = a0,b1,c2
+
+
