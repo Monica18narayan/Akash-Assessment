@@ -1,0 +1,44 @@
+
+Section F:
+
+
+import { Component, signal,  } from '@angular/core';
+
+@Component({ 
+  standalone: true, 
+  selector: app-TickerComponent,
+  template: `<p>{{ price }}</p>`
+})
+export class TickerComponent implements OnInit {
+price = signal(0);
+constructor(private api: PriceService) {}
+ngOnInit() {
+this.api.stream$.subscribe(p => this.price = p); // live price feed
+}
+}
+
+
+
+f2:
+concatMap
+*.so in the concat map it will execute one after the other
+*.if there are multiple requests it wont execute all the request at once it wuill execute one by one
+ for example if there are 3 requests coming in a way
+
+A will get executed 
+B will get executed
+c will executed
+
+
+exhaustMap
+.so in the exhaustMap it will ignore all the request while one is executing 
+*.if there are multiple requests it wont execute all the request at once it wuill execute one and rest all will get ignored
+ for example if there are 3 requests coming in a way
+  if supppose A is executing b and c will get ignored
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+export class  expenseservices {
+
+
+
+additem(){
+  return this.http.post('expense');
+};
+
+
+}
+
+
+
+
+import { Component, signal, } from '@angular/core';
+
+interface products{
+  id:number,
+  name:String,
+  price:number,
+  qty:number
+}
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: ``
+   
+})
+class AppComponent {
+
+  
+
+  expenses = inject(services);
+
+  products:[]= {
+    {id:1,name:laptop,price:10000,qty:1};
+  }
+
+  addexpenses(){
+    this.expenses.addexpenses.push(products);
+  }
+  
+}
+
+
+
+
